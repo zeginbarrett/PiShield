@@ -1,0 +1,21 @@
+[Unit]
+Description=PiShield optional private phone notifications
+ConditionPathExists=/etc/pishield-proactive/ntfy.json
+After=pishield-proactive.service network-online.target
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/pishield-proactive/notify.py
+User=root
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+ReadWritePaths=/var/lib/pishield-proactive
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+CapabilityBoundingSet=
+TimeoutStartSec=25
+MemoryMax=64M

@@ -1,0 +1,8 @@
+[Unit]
+Description=Check for new PiShield phone notifications
+[Timer]
+OnBootSec=4min
+OnUnitInactiveSec=5min
+Unit=pishield-proactive-notify.service
+[Install]
+WantedBy=timers.target

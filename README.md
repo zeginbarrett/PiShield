@@ -1,4 +1,4 @@
-# PiShield v1.1
+# PiShield v1.2
 
 PiShield is a network security and ad-blocking tool for the Raspberry Pi. It runs on your home network and gives you one place to see DNS activity, block unwanted websites, manage security rules, and keep an eye on connected devices.
 
@@ -20,6 +20,12 @@ You can use it from your computer or phone. It also works with local models thro
 Version 1.1 checks the Pi for failed SSH logins, unusual DNS requests, changed system files, listening services and pending package updates. An optional host firewall blocks unwanted incoming connections, with a three-minute trial that rolls back automatically unless confirmed. Existing network filtering still works without the local model.
 
 [Host security and firewall setup](docs/HOST-SECURITY.md)
+
+## Proactive defense
+
+Version 1.2 adds power and storage monitoring, observed neighbor changes, IPv6 checks, a security event history, and a redesigned Host security page. Optional SSH rate limiting, automatic Debian security updates and private phone notifications can be configured separately.
+
+[Proactive defense setup](docs/PROACTIVE-DEFENSE.md)
 
 ## Screenshots
 
@@ -59,13 +65,13 @@ Open the dashboard while connected to your home Wi-Fi. To access it away from ho
 
 [Remote access instructions](docs/REMOTE-ACCESS.md)
 
-## Update from 1.0
+## Update
 
-From the PiShield directory, run `git pull --ff-only` and `sudo bash pishield-v110.sh`. The firewall is off by default; existing rules and DNS settings are preserved.
+From the PiShield directory, run `git pull --ff-only` and `sudo bash install.sh` to install the latest version. Existing DNS and firewall settings are preserved.
 
 ## Project status
 
-Current version: **1.1**. Developed on a Raspberry Pi 4 running 64-bit Raspberry Pi OS Lite (Debian 13). The combined fresh-install sequence has not yet been tested on a separate physical Pi. Back up your existing system before installing. See [compatibility and attribution](NOTICE.md) and the [changelog](CHANGELOG.md).
+Current version: **1.2**. Developed on a Raspberry Pi 4 running 64-bit Raspberry Pi OS Lite (Debian 13). The combined fresh-install sequence has not yet been tested on a separate physical Pi. Back up your existing system before installing. See [compatibility and attribution](NOTICE.md) and the [changelog](CHANGELOG.md).
 
 PiShield filters DNS, not all network traffic. Device trust labels do not disconnect devices, and model recommendations require review before blocking. Keep the dashboard password enabled and use a private connection for remote access.
 

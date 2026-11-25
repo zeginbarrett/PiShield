@@ -1,0 +1,8 @@
+[Unit]
+Description=PiShield proactive checks every five minutes
+[Timer]
+OnBootSec=3min
+OnUnitInactiveSec=5min
+Unit=pishield-proactive.service
+[Install]
+WantedBy=timers.target

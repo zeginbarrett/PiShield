@@ -1,0 +1,23 @@
+[Unit]
+Description=PiShield proactive host and network-neighbor checks
+After=pishield-guard.service
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/pishield-proactive/monitor.py
+User=root
+Group=root
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_UNIX AF_NETLINK AF_INET AF_INET6
+ReadWritePaths=/var/lib/pishield-proactive
+CapabilityBoundingSet=CAP_DAC_OVERRIDE CAP_DAC_READ_SEARCH CAP_CHOWN
+TimeoutStartSec=80
+Nice=10
+MemoryMax=128M
