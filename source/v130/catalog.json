@@ -1,0 +1,86 @@
+[
+  [
+    "tv",
+    "Smart TV / ACR",
+    "TV advertising, viewing recognition and analytics (including Sony Bravia).",
+    "https://raw.githubusercontent.com/PCTestAdmin/tv-blocklist/main/lists/hosts.txt"
+  ],
+  [
+    "samsung",
+    "Samsung",
+    "Samsung device advertising and telemetry.",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.samsung-onlydomains.txt"
+  ],
+  [
+    "lg",
+    "LG webOS",
+    "LG television tracking and telemetry.",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.lgwebos-onlydomains.txt"
+  ],
+  [
+    "roku",
+    "Roku",
+    "Roku tracking endpoints.",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.roku-onlydomains.txt"
+  ],
+  [
+    "amazon",
+    "Amazon / Fire TV",
+    "Amazon device and service trackers.",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.amazon-onlydomains.txt"
+  ],
+  [
+    "windows",
+    "Windows / Office",
+    "Microsoft telemetry and trackers; test sign-in and updates.",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.winoffice-onlydomains.txt"
+  ],
+  [
+    "apple",
+    "Apple devices",
+    "Apple device and service trackers.",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.apple-onlydomains.txt"
+  ],
+  [
+    "xiaomi",
+    "Xiaomi / smart home",
+    "Xiaomi device trackers; not all IoT brands.",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.xiaomi-onlydomains.txt"
+  ],
+  [
+    "huawei",
+    "Huawei devices",
+    "Huawei device tracking.",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.huawei-onlydomains.txt"
+  ],
+  [
+    "oppo",
+    "OPPO / Realme",
+    "Mobile device trackers.",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.oppo-realme-onlydomains.txt"
+  ],
+  [
+    "vivo",
+    "Vivo devices",
+    "Mobile device trackers.",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.vivo-onlydomains.txt"
+  ],
+  [
+    "social",
+    "TikTok fingerprinting",
+    "Known TikTok tracking domains; not all social networks.",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.tiktok-onlydomains.txt"
+  ],
+  [
+    "tracking",
+    "Data harvesting / ads",
+    "General advertising, analytics and tracking; includes other unwanted domains.",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/multi-onlydomains.txt"
+  ],
+  [
+    "bypass",
+    "DNS / VPN bypass (optional)",
+    "Known encrypted DNS, VPN and proxy endpoints. May disrupt legitimate VPNs including remote access; do not enable without testing.",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/doh-vpn-proxy-bypass-onlydomains.txt"
+  ]
+]

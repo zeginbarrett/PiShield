@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.3.0
+- Added 14 optional privacy filters with per-device and Default-group scopes, source links, configuration controls and bounded local block-match counters.
+- Added links for managing domain exceptions and downloading lists.
+- Included the compact layout fix: independent sidebar scrolling and no sidebar-driven empty page height.
+- Existing firewall, DNS policies and notification configuration preserved.
+
+## 1.2.2
+- Compact desktop layout with independent navigation scrolling.
+
 ## 1.2.1
 - Added critical, high, warning and informational phone notifications.
 - Added alerts for managed threat-feed matches, possible DNS tunneling and recorded defense actions.

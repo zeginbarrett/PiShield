@@ -1,0 +1,21 @@
+[Unit]
+Description=PiShield privacy block match counters
+After=pihole-FTL.service
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/pishield-privacy/monitor.py
+User=root
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_UNIX
+CapabilityBoundingSet=CAP_DAC_OVERRIDE CAP_DAC_READ_SEARCH CAP_CHOWN
+ReadWritePaths=/var/lib/pishield-privacy
+MemoryMax=96M
+Nice=10
+TimeoutStartSec=35

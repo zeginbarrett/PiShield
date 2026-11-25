@@ -1,0 +1,37 @@
+/* PiShield compact page shell. Ignore AdminLTE's inline sidebar-driven min-height. */
+body.logged-in .content-wrapper,
+body.logged-in .content-wrapper > .content {
+  min-height: 0 !important;
+  height: auto !important;
+}
+body.logged-in .content-wrapper > .content { padding-bottom: 12px; }
+body.logged-in .content-wrapper > .content > :last-child { margin-bottom: 0; }
+body.logged-in .wrapper { height: auto !important; min-height: 0 !important; }
+@media (min-width: 768px) {
+  body.logged-in .wrapper { overflow: visible !important; }
+  body.logged-in .main-header { position: sticky !important; top: 0; z-index: 1030; }
+  body.logged-in .main-sidebar {
+    position: sticky !important;
+    float: left;
+    z-index: 1020 !important;
+    top: var(--ps122-header-height, 50px) !important;
+    height: calc(100vh - var(--ps122-header-height, 50px)) !important;
+    height: calc(100dvh - var(--ps122-header-height, 50px)) !important;
+    min-height: 0 !important;
+    padding-top: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #3b5947 transparent;
+  }
+  body.logged-in .main-sidebar .sidebar { height: auto !important; min-height: 0 !important; }
+  body.logged-in .content-wrapper { display: flow-root; }
+  /* Collapsed menus open via the normal header toggle; never clip the content. */
+  body.logged-in.sidebar-mini.sidebar-collapse .main-sidebar .sidebar-menu > li:hover > a > span,
+  body.logged-in.sidebar-mini.sidebar-collapse .main-sidebar .sidebar-menu > li:hover > .treeview-menu { display: none !important; }
+}
+@media (max-width: 767px) {
+  body.logged-in .main-sidebar { min-height: 0 !important; height: auto !important; }
+  body.logged-in .content-wrapper { padding-bottom: calc(62px + env(safe-area-inset-bottom)) !important; }
+}

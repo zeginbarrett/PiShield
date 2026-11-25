@@ -17,6 +17,12 @@ Turn a Raspberry Pi into the DNS defense console for your home network. Block lo
 
 DNS rules apply to devices that use the Pi for DNS. The optional host firewall controls incoming connections to the Pi itself.
 
+## Privacy & data protection
+
+Open **Filtering → Privacy & data protection** for 14 optional filters, including smart TV viewing-data collection (ACR), Sony Bravia, Samsung, LG, Roku, Fire TV, Windows, Apple, mobile-device trackers, TikTok fingerprinting, general ads and analytics, and known DNS/VPN bypass domains. Choose a scope, assign existing client entries, and update Gravity to download the lists. Filters are off until enabled; existing subscriptions are preserved. Counters show exact-domain matches to recorded gravity-blocked queries, not proof of which list caused a block.
+
+[Privacy controls and list sources](docs/PRIVACY.md)
+
 ## Investigating AI-assisted attacks
 
 An automated tool and a human can leave the same traces. PiShield helps you investigate behavior either can produce. DNS and SSH records alone cannot establish whether someone used AI.
@@ -78,6 +84,6 @@ git pull --ff-only
 sudo bash install.sh
 ```
 
-**Release 1.2.1** was developed on a Raspberry Pi 4 running 64-bit Raspberry Pi OS Lite (Debian 13). The combined fresh-install sequence still needs verification on a separate physical Pi.
+**Release 1.3** was developed on a Raspberry Pi 4 running 64-bit Raspberry Pi OS Lite (Debian 13). The combined fresh-install sequence still needs verification on a separate physical Pi.
 
 [Changelog](CHANGELOG.md) · [Credits and compatibility](NOTICE.md) · [EUPL-1.2 license](LICENSE)

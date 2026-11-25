@@ -1,0 +1,8 @@
+[Unit]
+Description=Update privacy block match counters
+[Timer]
+OnBootSec=3min
+OnUnitInactiveSec=5min
+Unit=pishield-privacy.service
+[Install]
+WantedBy=timers.target
