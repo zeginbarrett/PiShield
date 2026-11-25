@@ -1,4 +1,4 @@
-# PiShield v1.2
+# PiShield v1.2.1
 
 PiShield is a network security and ad-blocking tool for the Raspberry Pi. It runs on your home network and gives you one place to see DNS activity, block unwanted websites, manage security rules, and keep an eye on connected devices.
 
@@ -26,6 +26,10 @@ Version 1.1 checks the Pi for failed SSH logins, unusual DNS requests, changed s
 Version 1.2 adds power and storage monitoring, observed neighbor changes, IPv6 checks, a security event history, and a redesigned Host security page. Optional SSH rate limiting, automatic Debian security updates and private phone notifications can be configured separately.
 
 [Proactive defense setup](docs/PROACTIVE-DEFENSE.md)
+
+## Phone alerts
+
+Private phone alerts now include severity levels, DNS warning signs, threat-feed matches, defense actions and a daily security report. [Setup and alert details](docs/PHONE-ALERTS.md).
 
 ## Screenshots
 
@@ -71,7 +75,7 @@ From the PiShield directory, run `git pull --ff-only` and `sudo bash install.sh`
 
 ## Project status
 
-Current version: **1.2**. Developed on a Raspberry Pi 4 running 64-bit Raspberry Pi OS Lite (Debian 13). The combined fresh-install sequence has not yet been tested on a separate physical Pi. Back up your existing system before installing. See [compatibility and attribution](NOTICE.md) and the [changelog](CHANGELOG.md).
+Current version: **1.2.1**. Developed on a Raspberry Pi 4 running 64-bit Raspberry Pi OS Lite (Debian 13). The combined fresh-install sequence has not yet been tested on a separate physical Pi. Back up your existing system before installing. See [compatibility and attribution](NOTICE.md) and the [changelog](CHANGELOG.md).
 
 PiShield filters DNS, not all network traffic. Device trust labels do not disconnect devices, and model recommendations require review before blocking. Keep the dashboard password enabled and use a private connection for remote access.
 

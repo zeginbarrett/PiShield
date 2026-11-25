@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.1
+- Added critical, high, warning and informational phone notifications.
+- Added alerts for managed threat-feed matches, possible DNS tunneling and recorded defense actions.
+- Added a daily report at 08:00 local time, deduplication and a manual delivery test.
+- Retained private notification credentials and existing firewall/DNS settings. Alert evidence is not proof of compromise.
+
 ## 1.2.0
 - Added five-minute power, storage, neighbor and IPv6 checks.
 - Added bounded security event history and a 24-hour summary.
