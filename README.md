@@ -21,7 +21,17 @@ DNS rules apply to devices that use the Pi for DNS. The optional host firewall c
 
 Open **Filtering → Device filtering & privacy**. Choose a device or enter its reserved IP address, then turn individual protections on or off. The page manages the underlying assignments automatically and preserves existing policies. Includes Sony Bravia, TV/ACR, vendor telemetry, tracking, family and gambling filters. Download new lists using Update Gravity.
 
-[Device filtering instructions](docs/DEVICE-FILTERS.md)
+| Device | Privacy options |
+| --- | --- |
+| Smart TVs and streaming devices | Sony Bravia, Samba TV viewing-data endpoints, Samsung, LG webOS, Roku, Amazon / Fire TV, general TV / ACR |
+| Computers | Windows / Office and Apple device telemetry |
+| Mobile and smart-home devices | Apple, Xiaomi, Huawei, OPPO / Realme, Vivo, plus general tracking filters for other devices |
+| All DNS clients | Advertising, analytics, data harvesting, TikTok fingerprinting, optional family and gambling filters |
+| Optional restrictive filtering | Known DNS / VPN bypass endpoints; test carefully |
+
+Filter cards distinguish loaded lists from lists awaiting download, inactive filters and inherited Default policies. Device activity opens the selected IPv4 device's recorded DNS history. Existing network-wide settings stay intact.
+
+[Privacy coverage and verification](docs/PRIVACY-COVERAGE.md) · [Device filtering instructions](docs/DEVICE-FILTERS.md)
 
 ## Device Privacy Monitor
 
@@ -94,6 +104,6 @@ git pull --ff-only
 sudo bash install.sh
 ```
 
-**Release 1.3.4** was developed on a Raspberry Pi 4 running 64-bit Raspberry Pi OS Lite (Debian 13). The combined fresh-install sequence still needs verification on a separate physical Pi.
+**Release 1.3.5** was developed on a Raspberry Pi 4 running 64-bit Raspberry Pi OS Lite (Debian 13). The combined fresh-install sequence still needs verification on a separate physical Pi.
 
 [Changelog](CHANGELOG.md) · [Credits and compatibility](NOTICE.md) · [EUPL-1.2 license](LICENSE)

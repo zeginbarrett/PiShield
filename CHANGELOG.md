@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.5
+- Clarified per-device privacy states: loaded, awaiting download, inactive, off, and inherited policy.
+- Added direct list-download links and preselected IPv4 device history navigation.
+- Documented all 17 device privacy and optional content filters, live monitor and verification steps.
+- Preserved existing assignments and DNS policies.
+
 ## 1.3.4
 - Replaced the manual filtering profile workflow with device-first on/off controls, automatic internal group/list assignments, and registration of new IP clients.
 - Preserved existing policies and added guarded reuse of older dedicated profiles. Removed the obsolete Filtering profiles sidebar entry.
