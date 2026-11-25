@@ -1,10 +1,10 @@
-# PiShield v1.0 — Network Defense Console
+# PiShield v1.0.1 — Network Defense Console
 
 PiShield is an independent Pi-hole fork based on [Pi-hole](https://github.com/pi-hole/pi-hole), using its DNS engine and modifying its [web interface](https://github.com/pi-hole/web). It is not an official Pi-hole product or a replacement DNS engine. The GitHub repository is standalone rather than a GitHub-generated fork.
 
 PiShield adds local AI-assisted DNS analysis, network discovery, behavioral baselines, managed malware/phishing feeds, domain rules, device trust, security history, service recovery, and a responsive green-on-black console.
 
-**Release status:** experimental v1.0. Developed incrementally on Raspberry Pi 4, 64-bit Raspberry Pi OS Lite (Debian 13), Pi-hole Core 6.6, Web 6.6.1 and FTL 6.9. A combined clean-device installation and full mobile/enforcement testing have not been verified.
+**Release status:** experimental v1.0.1. Developed incrementally on Raspberry Pi 4, 64-bit Raspberry Pi OS Lite (Debian 13), Pi-hole Core 6.6, Web 6.6.1 and FTL 6.9. A combined clean-device installation and full mobile/enforcement testing have not been verified.
 
 ## Quick start
 
@@ -22,7 +22,11 @@ sudo bash install.sh
 
 Review scripts before running as root. The installer uses the official interactive Pi-hole installer if needed, then applies PiShield's components. On a compatible existing Pi-hole installation, back up your configuration first. Open `http://<PI-LAN-IP>/admin/` and use your existing Pi-hole admin password. No personal credentials are bundled.
 
-For an existing PiShield 0.9.3 installation, run `sudo bash pishield-v100.sh` instead. Check with `sudo bash pishield-v100.sh --check`. Roll back the v1.0 UI patch using `sudo bash pishield-v100.sh --rollback`.
+For an existing PiShield 1.0 installation, run `sudo bash update-v101.sh` from this repository to fix AI/defense command handling and mode highlighting. For 0.9.3, run `sudo bash pishield-v100.sh` followed by `sudo bash update-v101.sh`. Check with `sudo bash pishield-v100.sh --check`. Roll back the v1.0 UI patch using `sudo bash pishield-v100.sh --rollback`.
+
+## v1.0.1 maintenance update
+
+Fixes HTTP 405 when starting AI analysis, submitting defense rules or changing device trust. Defense mode buttons now reflect backend-confirmed configuration, with a separate pending indicator. The updater does not restart DNS or change the selected defense mode. See [CHANGELOG](CHANGELOG.md).
 
 ## What it does
 

@@ -47,3 +47,14 @@ body .sidebar-menu>li.ps093-nav>a{line-height:1.35!important}body .content .ps-n
 }
 @media(prefers-reduced-motion:reduce){body.logged-in .main-sidebar{transition:none!important}}
 .ps1-dashboard canvas[hidden]{display:none!important}
+
+/* PISHIELD V101 MODE BEGIN */
+body .content button.ps-mode-button{background:#14251b!important;color:#b6cec0!important;border:1px solid #365544!important;box-shadow:none!important;opacity:1!important;transition:background-color .15s,border-color .15s}
+body .content button.ps-mode-button:hover:not(:disabled){border-color:#79fda6!important}
+body .content button.ps-mode-button:focus-visible{outline:2px solid #d8fce3!important;outline-offset:2px}
+body .content button#ps8-observe.ps-mode-selected{background:#738393!important;color:#081014!important;border-color:#afbdcb!important;font-weight:700}
+body .content button#ps8-active.ps-mode-selected{background:#79fda6!important;color:#0b2113!important;border-color:#b6ffd0!important;font-weight:700}
+body .content button#ps8-aggressive.ps-mode-selected{background:#f2be68!important;color:#291a08!important;border-color:#ffe2a5!important;font-weight:700}
+body .content button.ps-mode-button.ps-mode-pending{outline:2px dashed #79fda6!important;outline-offset:2px;cursor:wait}
+body .content button.ps-mode-button:disabled:not(.ps-mode-selected):not(.ps-mode-pending){opacity:.65!important}
+/* PISHIELD V101 MODE END */

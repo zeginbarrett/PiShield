@@ -21,7 +21,7 @@ function setup(){
  if(route.startsWith('pishield')){const wrap=()=>{for(const t of content.querySelectorAll('table')){if(t.closest('.table-responsive,.ps1-scroll,.dataTables_wrapper,.dt-container')||t.id||t.classList.contains('dataTable'))continue;const d=node('div',undefined,'ps1-scroll');t.before(d);d.append(t);}};let queued=false;new MutationObserver(()=>{if(!queued){queued=true;requestAnimationFrame(()=>{queued=false;wrap();});}}).observe(content,{childList:true,subtree:true});wrap();}
  if(!home)return;
  document.title='PiShield | Command center';
- const dashboard=node('section',undefined,'ps1-dashboard'), head=node('div',undefined,'ps1-heading');head.append(node('h1','Command center'),node('span','PISHIELD / v1.0','ps1-version'));dashboard.append(head);
+ const dashboard=node('section',undefined,'ps1-dashboard'), head=node('div',undefined,'ps1-heading');head.append(node('h1','Command center'),node('span','PISHIELD / v1.0.1','ps1-version'));dashboard.append(head);
  const metrics=node('div',undefined,'ps1-metrics'), values={};
  for(const [id,label,path] of [['total','DNS queries','queries'],['blocked','Blocked requests','queries?status=blocked'],['percent','Blocking rate','queries'],['domains','Domains on lists','groups/lists']]){const a=node('a',undefined,'ps1-metric');a.href=link(path);const n=node('strong','—');values[id]=n;a.append(node('span',label),n);metrics.append(a);}dashboard.append(metrics);
  function panel(title){const p=node('section',undefined,'ps1-panel');p.append(node('h2',title));dashboard.append(p);return p;}
