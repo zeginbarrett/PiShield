@@ -19,9 +19,9 @@ DNS rules apply to devices that use the Pi for DNS. The optional host firewall c
 
 ## Privacy & data protection
 
-Open **Filtering → Privacy & data protection** for 15 optional filters, including smart TV viewing-data collection (ACR), Sony Bravia, Samsung, LG, Roku, Fire TV, Windows, Apple, mobile-device trackers, TikTok fingerprinting, general ads and analytics, and known DNS/VPN bypass domains. Choose a scope, assign existing client entries, and update Gravity to download the lists. Filters are off until enabled; existing subscriptions are preserved. Counters show exact-domain matches to recorded gravity-blocked queries, not proof of which list caused a block.
+Open **Filtering → Device filtering & privacy**. Choose a device or enter its reserved IP address, then turn individual protections on or off. The page manages the underlying assignments automatically and preserves existing policies. Includes Sony Bravia, TV/ACR, vendor telemetry, tracking, family and gambling filters. Download new lists using Update Gravity.
 
-[Privacy controls and list sources](docs/PRIVACY.md)
+[Device filtering instructions](docs/DEVICE-FILTERS.md)
 
 ## Device Privacy Monitor
 
@@ -94,6 +94,6 @@ git pull --ff-only
 sudo bash install.sh
 ```
 
-**Release 1.3.3** was developed on a Raspberry Pi 4 running 64-bit Raspberry Pi OS Lite (Debian 13). The combined fresh-install sequence still needs verification on a separate physical Pi.
+**Release 1.3.4** was developed on a Raspberry Pi 4 running 64-bit Raspberry Pi OS Lite (Debian 13). The combined fresh-install sequence still needs verification on a separate physical Pi.
 
 [Changelog](CHANGELOG.md) · [Credits and compatibility](NOTICE.md) · [EUPL-1.2 license](LICENSE)

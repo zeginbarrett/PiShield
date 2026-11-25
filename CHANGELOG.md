@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.4
+- Replaced the manual filtering profile workflow with device-first on/off controls, automatic internal group/list assignments, and registration of new IP clients.
+- Preserved existing policies and added guarded reuse of older dedicated profiles. Removed the obsolete Filtering profiles sidebar entry.
+- Installation changes only the dashboard; new filters remain opt-in.
+
 ## 1.3.3
 - Added six one-click capture display presets, custom port filtering and selected-device controls.
 - Separate bounded DNS and other IP metadata buffers; no non-DNS payload retention.
