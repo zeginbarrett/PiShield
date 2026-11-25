@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.2
+- Added a read-only live DNS packet monitor with two-second refresh, device and direction filters, and bounded volatile storage.
+- Uses restricted tcpdump capture without promiscuous mode or raw packet files. No DNS or firewall changes.
+
 ## 1.3.1
 - Added a dedicated opt-in Sony Bravia privacy list.
 - Added per-client DNS monitor with live refresh, bounded history, category hints, blocked-request metrics, CSV export, and explicitly scoped exact-domain rules.

@@ -1,0 +1,28 @@
+[Unit]
+Description=PiShield live DNS packet monitor
+After=network.target
+[Service]
+Type=simple
+DynamicUser=yes
+Group=pihole
+RuntimeDirectory=pishield-live
+RuntimeDirectoryMode=0750
+UMask=0027
+ExecStart=/usr/bin/python3 /opt/pishield-live/capture.py
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+AmbientCapabilities=CAP_NET_RAW
+CapabilityBoundingSet=CAP_NET_RAW
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_PACKET AF_INET AF_INET6 AF_NETLINK AF_UNIX
+MemoryMax=64M
+CPUQuota=30%
+[Install]
+WantedBy=multi-user.target
