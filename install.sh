@@ -72,7 +72,7 @@ stage v092 bash components/pishield-layout-v092.sh
 stage v093 bash components/pishield-pages-v093.sh
 stage v100 bash pishield-v100.sh
 stage v101 bash update-v101.sh
-printf '\nPiShield 1.0.1 installed. Open http://<YOUR-PI-IP>/admin/\n'
+printf '\nPiShield 1.0 installed. Open http://<YOUR-PI-IP>/admin/\n'
 echo 'Select Active defense to enable the managed threat feeds. Configure the optional Ollama bridge using docs/LOCAL-AI.md.'
 hostname -I || true
 bash pishield-v100.sh --check

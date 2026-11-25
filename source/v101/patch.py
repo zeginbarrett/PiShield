@@ -1,4 +1,4 @@
-"""PiShield 1.0.1: safe web-only upgrade with backup and atomic writes."""
+"""PiShield 1.0: safe web-only upgrade with backup and atomic writes."""
 from pathlib import Path
 import os, shutil, tempfile, stat
 base = Path(__file__).resolve().parents[1]
@@ -43,7 +43,7 @@ for rel in ('style/pishield-v100.css','scripts/js/pishield-v100.js'):
         new=old.rstrip()+'\n\n'+marker+block+end+'\n'
     else:
         if 'PISHIELD / v1.0' not in old:raise SystemExit('Unexpected dashboard JS; no changes made')
-        new=old.replace("'PISHIELD / v1.0'","'PISHIELD / v1.0.1'")
+        new=old.replace("'PISHIELD / v1.0.1'","'PISHIELD / v1.0'")
     changes[target]=new.encode()
 # Bust the explicitly-versioned shared CSS/JS URLs. Other scripts use native fileversion().
 header=root/'scripts/lua/header.lp'
@@ -55,7 +55,7 @@ for filename in ('pishield-v100.css','pishield-v100.js'):
 changes[header]=h.encode()
 changes={p:d for p,d in changes.items() if p.read_bytes()!=d}
 if not changes:
-    print('PiShield 1.0.1 already installed; no changes made.');raise SystemExit(0)
+    print('PiShield 1.0 already installed; no changes made.');raise SystemExit(0)
 backroot.mkdir(parents=True,exist_ok=True)
 backup=Path(tempfile.mkdtemp(prefix='v101-',dir=backroot)); backup.chmod(0o700)
 for p in changes:
@@ -73,5 +73,5 @@ try:
 except BaseException:
     for p in written:atomic(p,(backup/p.relative_to(root)).read_bytes())
     raise
-print('PiShield 1.0.1 applied. Backup:',backup)
+print('PiShield 1.0 applied. Backup:',backup)
 print('Refresh the AI and Defense Control pages (Ctrl+F5). No DNS restart or mode change.')
