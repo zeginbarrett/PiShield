@@ -1,82 +1,83 @@
-# PiShield v1.2.1
+# PiShield
 
-PiShield is a network security and ad-blocking tool for the Raspberry Pi. It runs on your home network and gives you one place to see DNS activity, block unwanted websites, manage security rules, and keep an eye on connected devices.
+Turn a Raspberry Pi into the DNS defense console for your home network. Block lookups for known phishing and malware domains, investigate suspicious activity, and control which domains your devices can reach through the Pi. Manage it from a desktop or phone.
 
-You can use it from your computer or phone. It also works with local models through Ollama if you want help reviewing suspicious network activity. You don't need a cloud AI account, and the basic protection keeps working when your computer is turned off.
+[Network controls](#network-controls) · [AI-assisted attacks](#investigating-ai-assisted-attacks) · [Phone alerts](#phone-alerts) · [Install](#install)
 
-## Features
+![PiShield desktop dashboard from an earlier development build](docs/screenshots/dashboard.webp)
 
-- Block ads, trackers, and domains on maintained malware and phishing lists.
-- View DNS requests, blocking statistics, and network activity.
-- Discover devices and assign trust labels.
-- Choose between observation, active defense, and aggressive defense.
-- Block or allow individual domains, set temporary rules, and undo changes.
-- Review security events, past reports, and unusual DNS activity.
-- Run optional local analysis manually or every 15 minutes.
-- Manage your network from a desktop or phone.
+## Network controls
 
-## Host security
+| What you want to do | Where to start |
+| --- | --- |
+| See what devices are requesting | Review DNS history and blocking statistics. If your router forwards every request under its own address, individual clients may be hidden. |
+| Block unwanted domains | New installs start in **Observation**. Open **Defense control** and select **Active defense** to enable additional threat feeds. **Aggressive defense** is also available. |
+| Make an exception or try a temporary block | Add an allow or block rule for a domain, set a temporary rule, or undo a change. |
+| Recognize devices on your LAN | Assign trust labels to observed devices and review new neighbors. Labels help identify devices. Your router controls whether they can join the network. |
 
-Version 1.1 checks the Pi for failed SSH logins, unusual DNS requests, changed system files, listening services and pending package updates. An optional host firewall blocks unwanted incoming connections, with a three-minute trial that rolls back automatically unless confirmed. Existing network filtering still works without the local model.
+DNS rules apply to devices that use the Pi for DNS. The optional host firewall controls incoming connections to the Pi itself.
 
-[Host security and firewall setup](docs/HOST-SECURITY.md)
+## Investigating AI-assisted attacks
 
-## Proactive defense
+An automated tool and a human can leave the same traces. PiShield helps you investigate behavior either can produce. DNS and SSH records alone cannot establish whether someone used AI.
 
-Version 1.2 adds power and storage monitoring, observed neighbor changes, IPv6 checks, a security event history, and a redesigned Host security page. Optional SSH rate limiting, automatic Debian security updates and private phone notifications can be configured separately.
+| Signal | What to check |
+| --- | --- |
+| Repeated failed SSH logins on the Pi | Check whether the failures coincide with your own login attempts. Optional Fail2ban protection can temporarily ban a source after repeated failures. |
+| A lookup matches a managed threat feed | Review the domain, time, client if visible, and DNS result. A lookup alone cannot tell you whether a connection succeeded. |
+| A burst of failed lookups or unusually long DNS names | Review nearby queries from the same client. These patterns can flag possible DNS tunneling and can also come from ordinary software. |
 
-[Proactive defense setup](docs/PROACTIVE-DEFENSE.md)
+**Local AI review.** Connect Ollama on a trusted computer through an encrypted SSH tunnel. Run **AI analysis** on demand or use the 15-minute Sentinel schedule to review DNS activity. You decide whether to apply a recommended block. The Pi keeps enforcing configured DNS rules while the model computer is offline. [Local AI setup](docs/LOCAL-AI.md)
+
+<details>
+<summary>View the Sentinel dashboard from an earlier build</summary>
+
+![PiShield Sentinel security monitoring dashboard](docs/screenshots/sentinel.webp)
+
+</details>
+
+## Protect the Pi
+
+Open **Host security** for five-minute checks covering SSH failures, listening services, tracked file changes, power, storage, and observed network changes. Use the 24-hour summary to see when an issue started. The optional firewall has a three-minute trial that rolls back unless you confirm it. SSH rate limiting and automatic Debian security updates can be enabled separately.
+
+[Host checks and firewall setup](docs/HOST-SECURITY.md) · [SSH protection, updates, and system monitoring](docs/PROACTIVE-DEFENSE.md)
 
 ## Phone alerts
 
-Private phone alerts now include severity levels, DNS warning signs, threat-feed matches, defense actions and a daily security report. [Setup and alert details](docs/PHONE-ALERTS.md).
+Configure a private ntfy topic to receive severity-ranked alerts for events such as repeated SSH failures, possible DNS tunneling, and threat-feed matches. The morning report summarizes DNS activity, recorded defense actions, and Pi health at or after **8:00 a.m. Pi local time**. Notifications carry categories and counts. Open the dashboard for investigation details.
 
-## Screenshots
-
-![PiShield dashboard](docs/screenshots/dashboard.webp)
-
-![Security monitoring](docs/screenshots/sentinel.webp)
-
-Screenshots are from earlier development builds.
+[Set up and test phone alerts](docs/PHONE-ALERTS.md) · [Reach the dashboard over a private VPN](docs/REMOTE-ACCESS.md)
 
 ## Install
 
-You'll need a Raspberry Pi running 64-bit Raspberry Pi OS Lite, an internet connection, and a fixed local IP address. Enable SSH when preparing your Pi if you plan to install remotely.
-
-Run these commands on your Pi:
+Use a Raspberry Pi running **64-bit Raspberry Pi OS Lite** with internet access and a fixed LAN address. Back up the Pi first. Enable SSH if you plan to install remotely.
 
 ```bash
 sudo apt update
 sudo apt install -y git curl
 git clone https://github.com/zeginbarrett/PiShield.git
 cd PiShield
+```
+
+Review `install.sh`, then run it on the Pi.
+
+```bash
 sudo bash install.sh
 ```
 
-Review the installer before running it as root. Follow the setup prompts, then open `http://YOUR-PI-IP/admin/` in your browser and sign in with the admin password.
+1. Open `http://YOUR-PI-IP/admin/` on your LAN and sign in with the admin password.
+2. Set one device to use the Pi for DNS. Visit a site and check that the lookup appears in DNS history.
+3. To extend coverage, set the DNS server your router provides to clients to the Pi’s LAN address. Choose your defense mode in the dashboard.
 
-Set your router or individual devices to use your Pi as their DNS server. Test DNS resolution before switching the entire network. In **Defense control**, select Active defense if you want to enable the additional threat feeds.
+### Update an existing installation
 
-## Connect a local model
+From the PiShield repository directory, run the following commands. The installer preserves existing DNS and firewall settings.
 
-Ollama can run on another computer on your network. PiShield connects to it through an encrypted SSH tunnel, so there's no need to expose Ollama publicly. Choose your installed model in **AI settings**.
+```bash
+git pull --ff-only
+sudo bash install.sh
+```
 
-[Local model setup instructions](docs/LOCAL-AI.md)
+**Release 1.2.1** was developed on a Raspberry Pi 4 running 64-bit Raspberry Pi OS Lite (Debian 13). The combined fresh-install sequence still needs verification on a separate physical Pi.
 
-## Access from your phone
-
-Open the dashboard while connected to your home Wi-Fi. To access it away from home, use a private VPN such as Tailscale.
-
-[Remote access instructions](docs/REMOTE-ACCESS.md)
-
-## Update
-
-From the PiShield directory, run `git pull --ff-only` and `sudo bash install.sh` to install the latest version. Existing DNS and firewall settings are preserved.
-
-## Project status
-
-Current version: **1.2.1**. Developed on a Raspberry Pi 4 running 64-bit Raspberry Pi OS Lite (Debian 13). The combined fresh-install sequence has not yet been tested on a separate physical Pi. Back up your existing system before installing. See [compatibility and attribution](NOTICE.md) and the [changelog](CHANGELOG.md).
-
-PiShield filters DNS, not all network traffic. Device trust labels do not disconnect devices, and model recommendations require review before blocking. Keep the dashboard password enabled and use a private connection for remote access.
-
-[License (EUPL-1.2)](LICENSE) · [Credits and compatibility](NOTICE.md)
+[Changelog](CHANGELOG.md) · [Credits and compatibility](NOTICE.md) · [EUPL-1.2 license](LICENSE)
