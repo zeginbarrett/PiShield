@@ -1,16 +1,33 @@
-# PiShield v1.0.1 — Network Defense Console
+# PiShield
 
-PiShield is an independent Pi-hole fork based on [Pi-hole](https://github.com/pi-hole/pi-hole), using its DNS engine and modifying its [web interface](https://github.com/pi-hole/web). It is not an official Pi-hole product or a replacement DNS engine. The GitHub repository is standalone rather than a GitHub-generated fork.
+PiShield is a network security and ad-blocking tool for the Raspberry Pi. It runs on your home network and gives you one place to see DNS activity, block unwanted websites, manage security rules, and keep an eye on connected devices.
 
-PiShield adds local AI-assisted DNS analysis, network discovery, behavioral baselines, managed malware/phishing feeds, domain rules, device trust, security history, service recovery, and a responsive green-on-black console.
+You can use it from your computer or phone. It also works with local models through Ollama if you want help reviewing suspicious network activity. You don't need a cloud AI account, and the basic protection keeps working when your computer is turned off.
 
-**Release status:** experimental v1.0.1. Developed incrementally on Raspberry Pi 4, 64-bit Raspberry Pi OS Lite (Debian 13), Pi-hole Core 6.6, Web 6.6.1 and FTL 6.9. A combined clean-device installation and full mobile/enforcement testing have not been verified.
+## Features
 
-## Quick start
+- Block ads, trackers, and domains on maintained malware and phishing lists.
+- View DNS requests, blocking statistics, and network activity.
+- Discover devices and assign trust labels.
+- Choose between observation, active defense, and aggressive defense.
+- Block or allow individual domains, set temporary rules, and undo changes.
+- Review security events, past reports, and unusual DNS activity.
+- Run optional local analysis manually or every 15 minutes.
+- Manage your network from a desktop or phone.
 
-Flash Raspberry Pi OS Lite (64-bit) with Raspberry Pi Imager. Enable SSH and create your own user. Give the Pi a stable LAN address through a router DHCP reservation or static configuration.
+## Screenshots
 
-On your Pi:
+![PiShield dashboard](docs/screenshots/dashboard.webp)
+
+![Security monitoring](docs/screenshots/sentinel.webp)
+
+Screenshots are from earlier development builds.
+
+## Install
+
+You'll need a Raspberry Pi running 64-bit Raspberry Pi OS Lite, an internet connection, and a fixed local IP address. Enable SSH when preparing your Pi if you plan to install remotely.
+
+Run these commands on your Pi:
 
 ```bash
 sudo apt update
@@ -20,42 +37,37 @@ cd PiShield
 sudo bash install.sh
 ```
 
-Review scripts before running as root. The installer uses the official interactive Pi-hole installer if needed, then applies PiShield's components. On a compatible existing Pi-hole installation, back up your configuration first. Open `http://<PI-LAN-IP>/admin/` and use your existing Pi-hole admin password. No personal credentials are bundled.
+Review the installer before running it as root. Follow the setup prompts, then open `http://YOUR-PI-IP/admin/` in your browser and sign in with the admin password.
 
-For an existing PiShield 1.0 installation, run `sudo bash update-v101.sh` from this repository to fix AI/defense command handling and mode highlighting. For 0.9.3, run `sudo bash pishield-v100.sh` followed by `sudo bash update-v101.sh`. Check with `sudo bash pishield-v100.sh --check`. Roll back the v1.0 UI patch using `sudo bash pishield-v100.sh --rollback`.
+Set your router or individual devices to use your Pi as their DNS server. Test DNS resolution before switching the entire network. In **Defense control**, select Active defense if you want to enable the additional threat feeds.
 
-## v1.0.1 maintenance update
+## Connect a local model
 
-Fixes HTTP 405 when starting AI analysis, submitting defense rules or changing device trust. Defense mode buttons now reflect backend-confirmed configuration, with a separate pending indicator. The updater does not restart DNS or change the selected defense mode. See [CHANGELOG](CHANGELOG.md).
+Ollama can run on another computer on your network. PiShield connects to it through an encrypted SSH tunnel, so there's no need to expose Ollama publicly. Choose your installed model in **AI settings**.
 
-## What it does
+[Local model setup instructions](docs/LOCAL-AI.md)
 
-- DNS advertising and tracker blocking via Pi-hole.
-- Managed threat feeds and observation/active/aggressive defense modes.
-- Temporary and permanent domain rules, allowlist exceptions, audit trail and rollback.
-- Device discovery, trust labels, connection health and DNS history.
-- Local Ollama analysis, persistent reports and 15-minute scheduled monitoring.
-- Behavioral baselines, threat verification, recommendations and service recovery.
-- Mobile-friendly dashboard and separate feature pages.
+## Access from your phone
 
-Activate additional threat filtering in **Defense control**. AI recommendations need review; an AI judgment alone does not establish compromise. Device trust labels do not isolate devices. DNS monitoring is not full traffic inspection; a router forwarding DNS may obscure individual devices. Existing filtering works while the AI computer is offline.
+Open the dashboard while connected to your home Wi-Fi. To access it away from home, use a private VPN such as Tailscale.
 
-## Local AI and remote access
+[Remote access instructions](docs/REMOTE-ACCESS.md)
 
-See [AI setup](docs/LOCAL-AI.md) and [phone access](docs/REMOTE-ACCESS.md). The AI host can keep Ollama bound to localhost; an SSH reverse tunnel carries requests from the Pi. Keep dashboard and Ollama private.
+## Update an existing installation
 
-## Screenshots
+For version 1.0, run the following from your existing PiShield repository:
 
-![PiShield desktop dashboard](docs/screenshots/dashboard.webp)
+```bash
+git pull --ff-only
+sudo bash update-v101.sh
+```
 
-![Sentinel autonomous intelligence](docs/screenshots/sentinel.webp)
+For version 0.9.3, run `sudo bash pishield-v100.sh` first. Check the system using `sudo bash pishield-v100.sh --check`. The command `sudo bash pishield-v100.sh --rollback` restores the previous v1.0 UI files; it is not a full system rollback.
 
-These are development screenshots from before the final v1.0 UI changes. See the [gallery](docs/SCREENSHOTS.md) for details.
+## Project status
 
-## Attribution and licensing
+Current version: **1.0.1**. Developed on a Raspberry Pi 4 running 64-bit Raspberry Pi OS Lite (Debian 13). The combined fresh-install sequence has not yet been tested on a separate physical Pi. Back up your existing system before installing. See [compatibility and attribution](NOTICE.md) and the [changelog](CHANGELOG.md).
 
-This project builds on Pi-hole Core, FTL and the Pi-hole web interface. Upstream source and license terms are available in the [Pi-hole organization](https://github.com/pi-hole). PiShield's derivative modifications are distributed under EUPL-1.2; see [LICENSE](LICENSE) and [NOTICE](NOTICE.md). The web interface is EUPL-licensed; its existing copyright notices and license files must be retained when modified or redistributed. PiShield does not claim ownership of upstream code or trademarks. This repository contains extension installers rather than a vendored upstream copy. Upstream upgrades may overwrite modified templates; review compatibility before updating.
+PiShield filters DNS, not all network traffic. Device trust labels do not disconnect devices, and model recommendations require review before blocking. Keep the dashboard password enabled and use a private connection for remote access.
 
-## Security and limitations
-
-Keep admin authentication enabled. Never publish the dashboard, private SSH keys, DNS logs, or Ollama API directly to the internet. DNS-level defenses do not replace endpoint security or a firewall. Back up before installation and test DNS resolution and blocking before setting your entire network to use the Pi. The repository is a development release, not a guarantee of security.
+[License (EUPL-1.2)](LICENSE) · [Credits and compatibility](NOTICE.md)
