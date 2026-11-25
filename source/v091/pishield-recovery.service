@@ -1,0 +1,7 @@
+[Unit]
+Description=PiShield monitoring service recovery
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/pishield-intelligent/recover.py
+TimeoutStartSec=180
+UMask=0077

@@ -1,0 +1,9 @@
+[Unit]
+Description=PiShield action engine periodic tick
+[Timer]
+OnBootSec=30s
+OnUnitInactiveSec=30s
+AccuracySec=5s
+Unit=pishield-action.service
+[Install]
+WantedBy=timers.target

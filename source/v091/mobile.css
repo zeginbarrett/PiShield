@@ -1,0 +1,12 @@
+/* Preserve the native off-canvas menu on phones; keep tables scrollable. */
+@media (max-width: 767px) {
+  .content-wrapper .content { padding: 10px !important; min-width: 0; }
+  .content-wrapper .box { max-width: 100%; min-width: 0; }
+  .content-wrapper .box-body { overflow-wrap: anywhere; min-width: 0; }
+  .content-wrapper .table-responsive { overflow-x: auto !important; max-width: 100%; }
+  .content-wrapper pre { max-width: 100%; white-space: pre-wrap !important; overflow-wrap: anywhere; }
+  .content-wrapper .btn { margin-bottom: 6px; max-width: 100%; white-space: normal; }
+  .ps-native-banner { overflow-wrap: anywhere; }
+  .ps-native-banner h2 { font-size: 21px !important; }
+  .main-sidebar .sidebar-menu > li > a { white-space: normal; }
+}

@@ -1,0 +1,16 @@
+[Unit]
+Description=PiShield native AI analysis worker
+After=pihole-FTL.service network-online.target
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/pishield-ai/worker.py
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/pishield-ai /etc/pihole
+[Install]
+WantedBy=multi-user.target

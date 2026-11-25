@@ -1,0 +1,3 @@
+/* PiShield Sentinel branding */
+.ps-hide-donation, .menu-donate, a[href*="pi-hole.net/donate"], a[href*="github.com/sponsors/pi-hole"] {display:none!important}
+.user-panel .logo-img{object-fit:contain!important;filter:none!important;}

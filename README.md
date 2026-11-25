@@ -1,6 +1,6 @@
 # PiShield v1.0 — Network Defense Console
 
-PiShield is an independent, fork-style derivative of [Pi-hole](https://github.com/pi-hole/pi-hole), using its DNS engine and modifying its [web interface](https://github.com/pi-hole/web). It is not an official Pi-hole product or a replacement DNS engine. The GitHub repository is standalone rather than a GitHub-generated fork.
+PiShield is an independent Pi-hole fork based on [Pi-hole](https://github.com/pi-hole/pi-hole), using its DNS engine and modifying its [web interface](https://github.com/pi-hole/web). It is not an official Pi-hole product or a replacement DNS engine. The GitHub repository is standalone rather than a GitHub-generated fork.
 
 PiShield adds local AI-assisted DNS analysis, network discovery, behavioral baselines, managed malware/phishing feeds, domain rules, device trust, security history, service recovery, and a responsive green-on-black console.
 
@@ -42,11 +42,15 @@ See [AI setup](docs/LOCAL-AI.md) and [phone access](docs/REMOTE-ACCESS.md). The 
 
 ## Screenshots
 
-See [gallery](docs/SCREENSHOTS.md).
+![PiShield desktop dashboard](docs/screenshots/dashboard.webp)
+
+![Sentinel autonomous intelligence](docs/screenshots/sentinel.webp)
+
+These are development screenshots from before the final v1.0 UI changes. See the [gallery](docs/SCREENSHOTS.md) for details.
 
 ## Attribution and licensing
 
-This project builds on Pi-hole Core, FTL and the Pi-hole web interface. Upstream source and license terms are available in the [Pi-hole organization](https://github.com/pi-hole). The web interface is EUPL-licensed; its existing copyright notices and license files must be retained when modified or redistributed. PiShield does not claim ownership of upstream code or trademarks. This repository contains extension installers rather than a vendored upstream copy. Upstream upgrades may overwrite modified templates; review compatibility before updating.
+This project builds on Pi-hole Core, FTL and the Pi-hole web interface. Upstream source and license terms are available in the [Pi-hole organization](https://github.com/pi-hole). PiShield's derivative modifications are distributed under EUPL-1.2; see [LICENSE](LICENSE) and [NOTICE](NOTICE.md). The web interface is EUPL-licensed; its existing copyright notices and license files must be retained when modified or redistributed. PiShield does not claim ownership of upstream code or trademarks. This repository contains extension installers rather than a vendored upstream copy. Upstream upgrades may overwrite modified templates; review compatibility before updating.
 
 ## Security and limitations
 

@@ -1,0 +1,8 @@
+[Unit]
+Description=PiShield Sentinel 15-minute collection
+[Timer]
+OnCalendar=*:0/15
+Persistent=true
+AccuracySec=30s
+[Install]
+WantedBy=timers.target

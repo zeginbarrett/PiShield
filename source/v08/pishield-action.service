@@ -1,0 +1,9 @@
+[Unit]
+Description=PiShield Sentinel DNS defense enforcement
+After=pihole-FTL.service network-online.target
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/pishield-action/engine.py
+TimeoutStartSec=330
+UMask=0077
+Nice=10

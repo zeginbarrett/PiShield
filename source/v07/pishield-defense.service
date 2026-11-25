@@ -1,0 +1,13 @@
+[Unit]
+Description=PiShield Active Defense snapshot and review labels
+After=pihole-FTL.service
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/pishield-defense/collector.py
+TimeoutStartSec=40
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/pishield-defense /etc/pihole
