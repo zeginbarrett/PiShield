@@ -7,7 +7,7 @@ Put a Raspberry Pi on DNS duty and find out. PiShield turns Pi-hole into a home 
 **[Install PiShield 2.0](#install-pishield-20)** · [Upgrade your Pi](#upgrade-your-pi) · [See what shipped in 2.0](CHANGELOG.md)
 
 ![PiShield dashboard showing DNS activity and blocking statistics](docs/screenshots/dashboard.webp)
-*Dashboard preview from an earlier build.*
+
 
 ## New in 2.0 · Device Intelligence
 
@@ -16,6 +16,8 @@ Say your Sony Bravia keeps requesting a domain you don’t recognize. Open **Net
 From that same view, open the TV’s privacy controls, enable the Sony Bravia filter, and download the list with **Update Gravity**. The next time the TV requests that domain, check its DNS history to see the result. Your laptop and phone can keep their own policies.
 
 Device Intelligence also highlights unusual jumps in query volume when enough history exists. If your router forwards every lookup under one address, the dashboard may only be able to identify the router. [Explore Device Intelligence](docs/DEVICE-INTELLIGENCE.md)
+
+![Device Intelligence](docs/screenshots/device-intelligence.webp)
 
 ## Choose what gets through
 
@@ -27,6 +29,10 @@ Device Intelligence also highlights unusual jumps in query volume when enough hi
 | A device acting strangely | Jump from its DNS history to the live monitor. Filter visible packet metadata by device, DNS, or port. The Pi keeps a rolling five-minute buffer in memory. |
 
 DNS controls cover devices that use the Pi as their resolver. Packet visibility depends on where the Pi sits on your network. [Device filters](docs/DEVICE-FILTERS.md) · [Privacy coverage](docs/PRIVACY-COVERAGE.md) · [Live monitor](docs/LIVE-PRESETS.md)
+
+![Device filtering and privacy](docs/screenshots/device-filters.webp)
+
+![Live Network Monitor](docs/screenshots/live-monitor.webp)
 
 ## Investigate AI-assisted attacks with local evidence
 

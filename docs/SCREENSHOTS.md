@@ -1,11 +1,11 @@
-# PiShield development screenshots
+# Screenshots
 
-These are actual captures from the working pre-1.0 development installation, not a claim that the final mobile release has been fully tested. Host identification was removed from the dashboard capture. The final v1.0 release changes the homepage and mobile navigation.
+![Dashboard](screenshots/dashboard.webp)
 
-## Desktop dashboard (v0.9.3)
+![Device Intelligence](screenshots/device-intelligence.webp)
 
-![PiShield desktop dashboard](screenshots/dashboard.webp)
+![Device filtering and privacy](screenshots/device-filters.webp)
 
-## Sentinel autonomous intelligence
+![Live Network Monitor](screenshots/live-monitor.webp)
 
-![Sentinel security intelligence page](screenshots/sentinel.webp)
+The dashboard is a capture from an installed PiShield 2.0 system. The other images show the current interface rendered in a browser with example data.
