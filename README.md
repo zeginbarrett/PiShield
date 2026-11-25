@@ -1,88 +1,48 @@
-# PiShield
+# PiShield 2.0
 
-Turn a Raspberry Pi into the DNS defense console for your home network. Block lookups for known phishing and malware domains, investigate suspicious activity, and control which domains your devices can reach through the Pi. Manage it from a desktop or phone.
+**What did your smart TV look up while you were watching it?**
 
-[Network controls](#network-controls) · [AI-assisted attacks](#investigating-ai-assisted-attacks) · [Phone alerts](#phone-alerts) · [Install](#install)
+Put a Raspberry Pi on DNS duty and find out. PiShield turns Pi-hole into a home network defense console. See the domains your devices request, block known phishing and tracking destinations, and investigate suspicious activity with a local AI model. Manage it from your laptop or phone.
 
-![PiShield desktop dashboard from an earlier development build](docs/screenshots/dashboard.webp)
+**[Install PiShield 2.0](#install-pishield-20)** · [Upgrade your Pi](#upgrade-your-pi) · [See what shipped in 2.0](CHANGELOG.md)
 
-## Network controls
+![PiShield dashboard showing DNS activity and blocking statistics](docs/screenshots/dashboard.webp)
+*Dashboard preview from an earlier build.*
 
-| What you want to do | Where to start |
+## New in 2.0 · Device Intelligence
+
+Say your Sony Bravia keeps requesting a domain you don’t recognize. Open **Network → Device Intelligence** and select the TV. You can see its recent DNS activity, which destinations PiShield recognizes as trackers, and how often local filters denied those requests.
+
+From that same view, open the TV’s privacy controls, enable the Sony Bravia filter, and download the list with **Update Gravity**. The next time the TV requests that domain, check its DNS history to see the result. Your laptop and phone can keep their own policies.
+
+Device Intelligence also highlights unusual jumps in query volume when enough history exists. If your router forwards every lookup under one address, the dashboard may only be able to identify the router. [Explore Device Intelligence](docs/DEVICE-INTELLIGENCE.md)
+
+## Choose what gets through
+
+| On your network | What you can do with PiShield |
 | --- | --- |
-| See what devices are requesting | Review DNS history and blocking statistics. If your router forwards every request under its own address, individual clients may be hidden. |
-| Block unwanted domains | New installs start in **Observation**. Open **Defense control** and select **Active defense** to enable additional threat feeds. **Aggressive defense** is also available. |
-| Make an exception or try a temporary block | Add an allow or block rule for a domain, set a temporary rule, or undo a change. |
-| Recognize devices on your LAN | Assign trust labels to observed devices and review new neighbors. Labels help identify devices. Your router controls whether they can join the network. |
+| Phishing and malware domains | Start in **Observation**, switch to **Active defense** to enable managed threat feeds, or choose **Aggressive defense** for broader coverage. Review matches and undo rule changes. |
+| Smart TVs and streaming boxes | Choose filters for Sony Bravia, Samba TV viewing-data endpoints, Roku, Fire TV, Samsung, or LG webOS. See which lists have loaded. |
+| Phones and computers | Apply vendor telemetry, advertising, or analytics filters by device. Add an exact-domain exception when an app needs access. |
+| A device acting strangely | Jump from its DNS history to the live monitor. Filter visible packet metadata by device, DNS, or port. The Pi keeps a rolling five-minute buffer in memory. |
 
-DNS rules apply to devices that use the Pi for DNS. The optional host firewall controls incoming connections to the Pi itself.
+DNS controls cover devices that use the Pi as their resolver. Packet visibility depends on where the Pi sits on your network. [Device filters](docs/DEVICE-FILTERS.md) · [Privacy coverage](docs/PRIVACY-COVERAGE.md) · [Live monitor](docs/LIVE-PRESETS.md)
 
-## Device Intelligence
+## Investigate AI-assisted attacks with local evidence
 
-Open **Network → Device Intelligence** for an individual device control center. Review bounded DNS statistics, recognized tracking destinations and local block share, activity-spike hints, observed network neighbors, list health and system service status. Open the selected device's privacy controls, DNS history and live packets directly. Optional single-device local TCP service checks are available through authenticated SSH. Gateway readiness and possible alternate-DNS observations are informational: no routing changes, integrated root web shell or per-device access schedules are installed.
+A burst of failed SSH logins on the Pi, a lookup on a threat feed, or a run of unusually long DNS names gives you somewhere to start. Open the event, check the timing, and review the surrounding activity. These signals can surface automated activity, though they can’t establish who ran it or whether AI was involved.
 
-[Device Intelligence setup and limitations](docs/DEVICE-INTELLIGENCE.md)
+**Put your own model on the case.** Connect Ollama over an encrypted SSH tunnel and ask Sentinel to review DNS activity on demand or every 15 minutes. Inspect the report and decide whether a domain deserves a temporary block. DNS filtering keeps running when the model computer is asleep. [Connect a local model](docs/LOCAL-AI.md)
 
-## Privacy & data protection
+## Get the alert on your phone
 
-Open **Filtering → Device filtering & privacy**. Choose a device or enter its reserved IP address, then turn individual protections on or off. The page manages the underlying assignments automatically and preserves existing policies. Includes Sony Bravia, TV/ACR, vendor telemetry, tracking, family and gambling filters. Download new lists using Update Gravity.
+Set up private **ntfy** notifications for repeated SSH failures, possible DNS tunneling, or a managed threat-feed match. Alerts carry categories and counts so raw domains and device addresses stay off your lock screen. A morning report summarizes the day’s recorded activity. [Set up phone alerts](docs/PHONE-ALERTS.md) · [Open the dashboard away from home](docs/REMOTE-ACCESS.md)
 
-| Device | Privacy options |
-| --- | --- |
-| Smart TVs and streaming devices | Sony Bravia, Samba TV viewing-data endpoints, Samsung, LG webOS, Roku, Amazon / Fire TV, general TV / ACR |
-| Computers | Windows / Office and Apple device telemetry |
-| Mobile and smart-home devices | Apple, Xiaomi, Huawei, OPPO / Realme, Vivo, plus general tracking filters for other devices |
-| All DNS clients | Advertising, analytics, data harvesting, TikTok fingerprinting, optional family and gambling filters |
-| Optional restrictive filtering | Known DNS / VPN bypass endpoints; test carefully |
+The Pi watches its own health, too. **Host security** tracks file changes, listening services, power, and storage. Enable SSH rate limiting or try the Pi’s host firewall with a three-minute automatic rollback. [Host firewall](docs/HOST-SECURITY.md) · [SSH protection and updates](docs/PROACTIVE-DEFENSE.md)
 
-Filter cards distinguish loaded lists from lists awaiting download, inactive filters and inherited Default policies. Device activity opens the selected IPv4 device's recorded DNS history. Existing network-wide settings stay intact.
+## Install PiShield 2.0
 
-[Privacy coverage and verification](docs/PRIVACY-COVERAGE.md) · [Device filtering instructions](docs/DEVICE-FILTERS.md)
-
-## Device Privacy Monitor
-
-See DNS activity for individual devices, including televisions. Select an observed client, review recent DNS results and category hints, export a local CSV, or create exact domain rules for a selected group. The Sony Bravia filter includes dedicated Sony and Samba TV endpoints. DNS monitoring does not reveal encrypted payloads or transferred bytes.
-
-[Device monitor and Sony setup](docs/DEVICE-PRIVACY.md)
-
-## Live Network Monitor
-
-Watch decoded DNS and other visible IP packet metadata. Use buttons for all visible IP, DNS, port 443, ping, device traffic and device DNS, plus custom port and text filters. The restricted capture service maintains a five-minute rolling buffer in RAM, with no raw packet archive. This does not inspect all LAN traffic or decrypt HTTPS. [Live monitor setup and controls](docs/LIVE-PRESETS.md)
-
-## Investigating AI-assisted attacks
-
-An automated tool and a human can leave the same traces. PiShield helps you investigate behavior either can produce. DNS and SSH records alone cannot establish whether someone used AI.
-
-| Signal | What to check |
-| --- | --- |
-| Repeated failed SSH logins on the Pi | Check whether the failures coincide with your own login attempts. Optional Fail2ban protection can temporarily ban a source after repeated failures. |
-| A lookup matches a managed threat feed | Review the domain, time, client if visible, and DNS result. A lookup alone cannot tell you whether a connection succeeded. |
-| A burst of failed lookups or unusually long DNS names | Review nearby queries from the same client. These patterns can flag possible DNS tunneling and can also come from ordinary software. |
-
-**Local AI review.** Connect Ollama on a trusted computer through an encrypted SSH tunnel. Run **AI analysis** on demand or use the 15-minute Sentinel schedule to review DNS activity. You decide whether to apply a recommended block. The Pi keeps enforcing configured DNS rules while the model computer is offline. [Local AI setup](docs/LOCAL-AI.md)
-
-<details>
-<summary>View the Sentinel dashboard from an earlier build</summary>
-
-![PiShield Sentinel security monitoring dashboard](docs/screenshots/sentinel.webp)
-
-</details>
-
-## Protect the Pi
-
-Open **Host security** for five-minute checks covering SSH failures, listening services, tracked file changes, power, storage, and observed network changes. Use the 24-hour summary to see when an issue started. The optional firewall has a three-minute trial that rolls back unless you confirm it. SSH rate limiting and automatic Debian security updates can be enabled separately.
-
-[Host checks and firewall setup](docs/HOST-SECURITY.md) · [SSH protection, updates, and system monitoring](docs/PROACTIVE-DEFENSE.md)
-
-## Phone alerts
-
-Configure a private ntfy topic to receive severity-ranked alerts for events such as repeated SSH failures, possible DNS tunneling, and threat-feed matches. The morning report summarizes DNS activity, recorded defense actions, and Pi health at or after **8:00 a.m. Pi local time**. Notifications carry categories and counts. Open the dashboard for investigation details.
-
-[Set up and test phone alerts](docs/PHONE-ALERTS.md) · [Reach the dashboard over a private VPN](docs/REMOTE-ACCESS.md)
-
-## Install
-
-Use a Raspberry Pi running **64-bit Raspberry Pi OS Lite** with internet access and a fixed LAN address. Back up the Pi first. Enable SSH if you plan to install remotely.
+Use a Raspberry Pi with **64-bit Raspberry Pi OS Lite**, a fixed LAN address, and internet access. Back up the Pi first. The installer adds services and updates the Pi-hole v6 web interface.
 
 ```bash
 sudo apt update
@@ -97,19 +57,19 @@ Review `install.sh`, then run it on the Pi.
 sudo bash install.sh
 ```
 
-1. Open `http://YOUR-PI-IP/admin/` on your LAN and sign in with the admin password.
-2. Set one device to use the Pi for DNS. Visit a site and check that the lookup appears in DNS history.
-3. To extend coverage, set the DNS server your router provides to clients to the Pi’s LAN address. Choose your defense mode in the dashboard.
+1. Sign in at `http://YOUR-PI-IP/admin/`.
+2. Point one device’s DNS at the Pi, visit a website, and look for the request in **Query Log**.
+3. Open **Device Intelligence** to explore that client. When you’re ready to cover more devices, configure the DNS server your router advertises.
 
-### Update an existing installation
+### Upgrade your Pi
 
-From the PiShield repository directory, run the following commands. The installer preserves existing DNS and firewall settings.
+From your existing PiShield repository directory, run the installer to apply the upgrade, then refresh the dashboard.
 
 ```bash
 git pull --ff-only
 sudo bash install.sh
 ```
 
-**Release 2.0** was developed on a Raspberry Pi 4 running 64-bit Raspberry Pi OS Lite (Debian 13). The combined fresh-install sequence still needs verification on a separate physical Pi.
+Developed on Raspberry Pi 4 with Raspberry Pi OS Lite (Debian 13). The full fresh-install sequence still needs verification on a separate physical Pi.
 
-[Changelog](CHANGELOG.md) · [Credits and compatibility](NOTICE.md) · [EUPL-1.2 license](LICENSE)
+[Device privacy monitor](docs/DEVICE-PRIVACY.md) · [Changelog](CHANGELOG.md) · [Credits and compatibility](NOTICE.md) · [EUPL-1.2 license](LICENSE)
