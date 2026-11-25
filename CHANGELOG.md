@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.1
+- Added a dedicated opt-in Sony Bravia privacy list.
+- Added per-client DNS monitor with live refresh, bounded history, category hints, blocked-request metrics, CSV export, and explicitly scoped exact-domain rules.
+- Preserved existing policies; no payload capture or traffic-volume estimates.
+
 ## 1.3.0
 - Added 14 optional privacy filters with per-device and Default-group scopes, source links, configuration controls and bounded local block-match counters.
 - Added links for managing domain exceptions and downloading lists.

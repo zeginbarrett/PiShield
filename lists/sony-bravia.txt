@@ -1,0 +1,14 @@
+# PiShield Sony Bravia privacy: exact-domain entries only.
+# Source: PCTestAdmin/tv-blocklist (Sony / Samba TV entries), selected narrowly.
+# https://github.com/PCTestAdmin/tv-blocklist
+# Review streaming and TV features after enabling. No firmware/update domains.
+api.cid.samba.tv
+events.cid.samba.tv
+platform.cid.samba.tv
+preferences.cid.samba.tv
+ad8641f3cff742de893d919add74c2bb.ssm1.internet.sony.tv
+ad8641f3cff742de893d919add74c2bb.ssm2.internet.sony.tv
+api-mf1.meta.ndmdhs.com
+b02.black.ndmdhs.com
+bdcore-apr-lb.bda.ndmdhs.com
+social.biv.sony.tv

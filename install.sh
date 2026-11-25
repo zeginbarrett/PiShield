@@ -7,11 +7,12 @@ state=/var/lib/pishield-install
 [[ $# == 0 ]] || { echo 'Usage: sudo bash install.sh'; exit 2; }
 command -v apt-get >/dev/null && command -v systemctl >/dev/null || { echo 'Requires Raspberry Pi OS / Debian with systemd.'; exit 1; }
 if [[ -f "$root/scripts/js/pishield-v100.js" ]]; then
-  echo 'Existing PiShield dashboard detected. Applying 1.3.'
+  echo 'Existing PiShield dashboard detected. Applying 1.3.1.'
   if [[ ! -f "$root/pishield-guard.lp" ]]; then bash pishield-v110.sh; fi
   if [[ ! -f "$root/pishield-proactive-api.lp" || ! -f /opt/pishield-proactive/monitor.py ]]; then bash pishield-v120.sh; fi
   bash pishield-v121.sh
-  bash pishield-v130.sh
+  if [[ ! -f "$root/pishield-privacy.lp" || ! -f /opt/pishield-privacy/monitor.py ]]; then bash pishield-v130.sh; fi
+  bash pishield-v131.sh
   exec bash pishield-v100.sh --check
 fi
 if [[ -f "$root/scripts/js/pishield-pages-v093.js" && ! -d "$state" ]]; then
@@ -19,7 +20,8 @@ if [[ -f "$root/scripts/js/pishield-pages-v093.js" && ! -d "$state" ]]; then
   bash pishield-v110.sh
   bash pishield-v120.sh
   bash pishield-v121.sh
-  exec bash pishield-v130.sh
+  bash pishield-v130.sh
+  exec bash pishield-v131.sh
 fi
 if [[ -f "$root/pishield.lp" && ! -d "$state" ]]; then
   echo 'Existing older PiShield installation detected. Do not overwrite it with the fresh-install sequence.'
@@ -27,7 +29,7 @@ if [[ -f "$root/pishield.lp" && ! -d "$state" ]]; then
   exit 1
 fi
 for f in components/*.sh pishield-v100.sh; do bash -n "$f"; done
-printf '%s\n' 'PiShield 1.3 modifies the installed Pi-hole web interface and adds background services.' 'Review the source and create a system backup before proceeding.'
+printf '%s\n' 'PiShield 1.3.1 modifies the installed Pi-hole web interface and adds background services.' 'Review the source and create a system backup before proceeding.'
 read -r -p 'Continue? [y/N] ' answer
 [[ "$answer" == [yY] ]] || exit 0
 apt-get update
@@ -82,7 +84,8 @@ stage v110 bash pishield-v110.sh
 stage v120 bash pishield-v120.sh
 stage v121 bash pishield-v121.sh
 stage v130 bash pishield-v130.sh
-printf '\nPiShield 1.3 installed. Open http://<YOUR-PI-IP>/admin/\n'
+stage v131 bash pishield-v131.sh
+printf '\nPiShield 1.3.1 installed. Open http://<YOUR-PI-IP>/admin/\n'
 echo 'Select Active defense to enable the managed threat feeds. Configure the optional Ollama bridge using docs/LOCAL-AI.md.'
 hostname -I || true
 bash pishield-v100.sh --check
