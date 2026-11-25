@@ -17,6 +17,12 @@ Turn a Raspberry Pi into the DNS defense console for your home network. Block lo
 
 DNS rules apply to devices that use the Pi for DNS. The optional host firewall controls incoming connections to the Pi itself.
 
+## Device Intelligence
+
+Open **Network → Device Intelligence** for an individual device control center. Review bounded DNS statistics, recognized tracking destinations and local block share, activity-spike hints, observed network neighbors, list health and system service status. Open the selected device's privacy controls, DNS history and live packets directly. Optional single-device local TCP service checks are available through authenticated SSH. Gateway readiness and possible alternate-DNS observations are informational: no routing changes, integrated root web shell or per-device access schedules are installed.
+
+[Device Intelligence setup and limitations](docs/DEVICE-INTELLIGENCE.md)
+
 ## Privacy & data protection
 
 Open **Filtering → Device filtering & privacy**. Choose a device or enter its reserved IP address, then turn individual protections on or off. The page manages the underlying assignments automatically and preserves existing policies. Includes Sony Bravia, TV/ACR, vendor telemetry, tracking, family and gambling filters. Download new lists using Update Gravity.
@@ -104,6 +110,6 @@ git pull --ff-only
 sudo bash install.sh
 ```
 
-**Release 1.3.5** was developed on a Raspberry Pi 4 running 64-bit Raspberry Pi OS Lite (Debian 13). The combined fresh-install sequence still needs verification on a separate physical Pi.
+**Release 2.0** was developed on a Raspberry Pi 4 running 64-bit Raspberry Pi OS Lite (Debian 13). The combined fresh-install sequence still needs verification on a separate physical Pi.
 
 [Changelog](CHANGELOG.md) · [Credits and compatibility](NOTICE.md) · [EUPL-1.2 license](LICENSE)

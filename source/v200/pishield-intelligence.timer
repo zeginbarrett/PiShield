@@ -1,0 +1,8 @@
+[Unit]
+Description=Refresh PiShield device intelligence every five minutes
+[Timer]
+OnBootSec=3min
+OnUnitInactiveSec=5min
+Unit=pishield-intelligence.service
+[Install]
+WantedBy=timers.target

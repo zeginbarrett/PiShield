@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.0
+- Consolidated per-device DNS and privacy metrics, recognized tracking destinations, observed client identity hints and network neighbors into Device Intelligence.
+- Added conservative volume-spike and visible alternate-DNS hints, service/timer status, privacy-list health and gateway readiness.
+- Added opt-in local single-device TCP service reachability checks; no automatic scanning or vulnerability claims.
+- Existing privacy filters, phone alerts, local AI, live monitor, DNS policies and firewall preserved.
+- Gateway enforcement, internet access schedules and a separately authenticated integrated terminal are not included. No routing changes.
+
 ## 1.3.5
 - Clarified per-device privacy states: loaded, awaiting download, inactive, off, and inherited policy.
 - Added direct list-download links and preselected IPv4 device history navigation.
