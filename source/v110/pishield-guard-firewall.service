@@ -1,0 +1,11 @@
+[Unit]
+Description=Restore explicitly confirmed PiShield host firewall
+After=nftables.service
+Before=network-online.target
+ConditionPathExists=/etc/pishield-guard/firewall.nft
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/pishield-guard firewall restore
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target

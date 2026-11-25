@@ -7,13 +7,13 @@ state=/var/lib/pishield-install
 [[ $# == 0 ]] || { echo 'Usage: sudo bash install.sh'; exit 2; }
 command -v apt-get >/dev/null && command -v systemctl >/dev/null || { echo 'Requires Raspberry Pi OS / Debian with systemd.'; exit 1; }
 if [[ -f "$root/scripts/js/pishield-v100.js" ]]; then
-  echo 'PiShield 1.0 UI already installed. Applying current maintenance patch.'
-  bash update-v101.sh
+  echo 'Existing PiShield dashboard detected. Applying 1.1.'
+  bash pishield-v110.sh
   exec bash pishield-v100.sh --check
 fi
 if [[ -f "$root/scripts/js/pishield-pages-v093.js" && ! -d "$state" ]]; then
   bash pishield-v100.sh
-  exec bash update-v101.sh
+  exec bash pishield-v110.sh
 fi
 if [[ -f "$root/pishield.lp" && ! -d "$state" ]]; then
   echo 'Existing older PiShield installation detected. Do not overwrite it with the fresh-install sequence.'
@@ -21,7 +21,7 @@ if [[ -f "$root/pishield.lp" && ! -d "$state" ]]; then
   exit 1
 fi
 for f in components/*.sh pishield-v100.sh; do bash -n "$f"; done
-printf '%s\n' 'PiShield 1.0 modifies the installed Pi-hole web interface and adds background services.' 'Review the source and create a system backup before proceeding.'
+printf '%s\n' 'PiShield 1.1 modifies the installed Pi-hole web interface and adds background services.' 'Review the source and create a system backup before proceeding.'
 read -r -p 'Continue? [y/N] ' answer
 [[ "$answer" == [yY] ]] || exit 0
 apt-get update
@@ -72,7 +72,8 @@ stage v092 bash components/pishield-layout-v092.sh
 stage v093 bash components/pishield-pages-v093.sh
 stage v100 bash pishield-v100.sh
 stage v101 bash update-v101.sh
-printf '\nPiShield 1.0 installed. Open http://<YOUR-PI-IP>/admin/\n'
+stage v110 bash pishield-v110.sh
+printf '\nPiShield 1.1 installed. Open http://<YOUR-PI-IP>/admin/\n'
 echo 'Select Active defense to enable the managed threat feeds. Configure the optional Ollama bridge using docs/LOCAL-AI.md.'
 hostname -I || true
 bash pishield-v100.sh --check

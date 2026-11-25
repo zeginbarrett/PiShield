@@ -1,0 +1,8 @@
+[Unit]
+Description=PiShield host checks every five minutes
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=5min
+Unit=pishield-guard.service
+[Install]
+WantedBy=timers.target
