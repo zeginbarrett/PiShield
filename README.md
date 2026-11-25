@@ -31,7 +31,7 @@ See DNS activity for individual devices, including televisions. Select an observ
 
 ## Live Network Monitor
 
-Watch decoded DNS packets visible to the Pi, filter by device IP or domain, and pause the display. The restricted capture service maintains a five-minute rolling buffer in RAM, with no raw packet archive. This does not inspect all LAN traffic or decrypt HTTPS. [Live monitor setup and controls](docs/LIVE-MONITOR.md)
+Watch decoded DNS and other visible IP packet metadata. Use buttons for all visible IP, DNS, port 443, ping, device traffic and device DNS, plus custom port and text filters. The restricted capture service maintains a five-minute rolling buffer in RAM, with no raw packet archive. This does not inspect all LAN traffic or decrypt HTTPS. [Live monitor setup and controls](docs/LIVE-PRESETS.md)
 
 ## Investigating AI-assisted attacks
 
@@ -94,6 +94,6 @@ git pull --ff-only
 sudo bash install.sh
 ```
 
-**Release 1.3.2** was developed on a Raspberry Pi 4 running 64-bit Raspberry Pi OS Lite (Debian 13). The combined fresh-install sequence still needs verification on a separate physical Pi.
+**Release 1.3.3** was developed on a Raspberry Pi 4 running 64-bit Raspberry Pi OS Lite (Debian 13). The combined fresh-install sequence still needs verification on a separate physical Pi.
 
 [Changelog](CHANGELOG.md) · [Credits and compatibility](NOTICE.md) · [EUPL-1.2 license](LICENSE)

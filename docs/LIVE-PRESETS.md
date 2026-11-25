@@ -1,0 +1,5 @@
+# Live capture presets
+
+Open **Network → Live Network Monitor** and click All visible IP, All DNS, HTTPS / port 443, ICMP / ping, Device traffic, or Device DNS. For a device, enter its current IP address. The port and text filters narrow the current view. Pause and Clear apply only to the display.
+
+Two restricted tcpdump streams retain decoded DNS summaries and other IP metadata separately (up to 300 each, for five minutes, in RAM). All visible IP is limited to packets the Pi can see without promiscuous mode; on a switched network it cannot see arbitrary device-to-router unicast traffic. Port 443 is a port-based hint, not proof of HTTPS. Other protocols may be shown as IP rather than a specific protocol. Counters count retained/parsed summaries, not exact network-wide traffic totals. Rate caps, ring limits and kernel drops can omit packets. No raw packet archive or decrypted payloads. No packet filtering/firewall rules are changed. Stop capture from SSH with `sudo systemctl disable --now pishield-live.service`.

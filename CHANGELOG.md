@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.3
+- Added six one-click capture display presets, custom port filtering and selected-device controls.
+- Separate bounded DNS and other IP metadata buffers; no non-DNS payload retention.
+- Existing firewall and DNS settings remain unchanged.
+
 ## 1.3.2
 - Added a read-only live DNS packet monitor with two-second refresh, device and direction filters, and bounded volatile storage.
 - Uses restricted tcpdump capture without promiscuous mode or raw packet files. No DNS or firewall changes.
