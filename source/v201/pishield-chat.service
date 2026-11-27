@@ -1,0 +1,30 @@
+[Unit]
+Description=PiShield private interactive AI assistant
+After=pihole-FTL.service
+[Service]
+Type=simple
+User=root
+Group=pihole
+RuntimeDirectory=pishield-chat
+RuntimeDirectoryMode=0750
+UMask=0027
+ExecStartPre=/usr/bin/touch /run/pishield-chat/request
+ExecStartPre=/usr/bin/chmod 0660 /run/pishield-chat/request
+ExecStart=/usr/bin/python3 /opt/pishield-chat/worker.py
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+ReadWritePaths=/run/pishield-chat
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+IPAddressDeny=any
+IPAddressAllow=localhost
+CapabilityBoundingSet=CAP_DAC_READ_SEARCH CAP_DAC_OVERRIDE
+MemoryMax=128M
+[Install]
+WantedBy=multi-user.target

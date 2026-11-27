@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.1
+- Added Ask PiShield chat, follow-up questions, selectable read-only data tools and user-approved reusable analysis recipes.
+- Made manual and scheduled reports use plain English, with an overview and preserved technical text.
+- Retained existing firewall, privacy and network configuration.
+
 ## 2.0.0
 - Consolidated per-device DNS and privacy metrics, recognized tracking destinations, observed client identity hints and network neighbors into Device Intelligence.
 - Added conservative volume-spike and visible alternate-DNS hints, service/timer status, privacy-list health and gateway readiness.

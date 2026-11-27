@@ -40,6 +40,10 @@ A burst of failed SSH logins on the Pi, a lookup on a threat feed, or a run of u
 
 **Put your own model on the case.** Connect Ollama over an encrypted SSH tunnel and ask Sentinel to review DNS activity on demand or every 15 minutes. Inspect the report and decide whether a domain deserves a temporary block. DNS filtering keeps running when the model computer is asleep. [Connect a local model](docs/LOCAL-AI.md)
 
+## Ask PiShield
+
+Read plain-English reports and ask follow-up questions using the local AI model. Choose which read-only sources the assistant can consult, including saved reports, device activity, system health, privacy counters and recent visible packets. Create and approve reusable analysis recipes from these sources. No generated programs or arbitrary commands are executed. [Ask PiShield](docs/ASK-PISHIELD.md)
+
 ## Get the alert on your phone
 
 Set up private **ntfy** notifications for repeated SSH failures, possible DNS tunneling, or a managed threat-feed match. Alerts carry categories and counts so raw domains and device addresses stay off your lock screen. A morning report summarizes the day’s recorded activity. [Set up phone alerts](docs/PHONE-ALERTS.md) · [Open the dashboard away from home](docs/REMOTE-ACCESS.md)
