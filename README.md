@@ -1,10 +1,10 @@
-# PiShield 2.0
+# PiShield 2.1
 
 **What did your smart TV look up while you were watching it?**
 
 Put a Raspberry Pi on DNS duty and find out. PiShield turns Pi-hole into a home network defense console. See the domains your devices request, block known phishing and tracking destinations, and investigate suspicious activity with a local AI model. Manage it from your laptop or phone.
 
-**[Install PiShield 2.0](#install-pishield-20)** · [Upgrade your Pi](#upgrade-your-pi) · [See what shipped in 2.0](CHANGELOG.md)
+**[Install PiShield 2.1](#install-pishield-21)** · [Upgrade your Pi](#upgrade-your-pi) · [See what shipped in 2.0](CHANGELOG.md)
 
 ![PiShield dashboard showing DNS activity and blocking statistics](docs/screenshots/dashboard.webp)
 
@@ -40,9 +40,9 @@ A burst of failed SSH logins on the Pi, a lookup on a threat feed, or a run of u
 
 **Put your own model on the case.** Connect Ollama over an encrypted SSH tunnel and ask Sentinel to review DNS activity on demand or every 15 minutes. Inspect the report and decide whether a domain deserves a temporary block. DNS filtering keeps running when the model computer is asleep. [Connect a local model](docs/LOCAL-AI.md)
 
-## Ask PiShield
+## AI Chat and Tool Workshop
 
-Read plain-English reports and ask follow-up questions using the local AI model. Choose which read-only sources the assistant can consult, including saved reports, device activity, system health, privacy counters and recent visible packets. Create and approve reusable analysis recipes from these sources. No generated programs or arbitrary commands are executed. [Ask PiShield](docs/ASK-PISHIELD.md)
+Chat with your local model on a dedicated page. Choose read-only diagnostic sources and create reusable tools in the Workshop. Ask the model to redesign the dashboard using approved theme settings, preview the changes and save them. Request fixed maintenance operations for explicit owner approval over SSH. Python drafts are review-only; arbitrary generated code is not executed. [AI Chat and Workshop](docs/AI-WORKSHOP.md)
 
 ## Get the alert on your phone
 

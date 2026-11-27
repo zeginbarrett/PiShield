@@ -7,18 +7,19 @@ state=/var/lib/pishield-install
 [[ $# == 0 ]] || { echo 'Usage: sudo bash install.sh'; exit 2; }
 command -v apt-get >/dev/null && command -v systemctl >/dev/null || { echo 'Requires Raspberry Pi OS / Debian with systemd.'; exit 1; }
 if [[ -f "$root/scripts/js/pishield-v100.js" ]]; then
-  echo 'Existing PiShield dashboard detected. Applying 2.0.1.'
+  echo 'Existing PiShield dashboard detected. Applying 2.1.'
   if [[ ! -f "$root/pishield-guard.lp" ]]; then bash pishield-v110.sh; fi
   if [[ ! -f "$root/pishield-proactive-api.lp" || ! -f /opt/pishield-proactive/monitor.py ]]; then bash pishield-v120.sh; fi
   bash pishield-v121.sh
   if [[ ! -f "$root/pishield-privacy.lp" || ! -f /opt/pishield-privacy/monitor.py ]]; then bash pishield-v130.sh; fi
   if [[ ! -f "$root/pishield-device-privacy.lp" ]]; then bash pishield-v131.sh; fi
   if [[ ! -f "$root/pishield-live.lp" || ! -f /opt/pishield-live/capture.py ]]; then bash pishield-v132.sh; fi
-  if ! grep -Eq 'pishield-v100\.js\?v=(133|134|135|200|201)\b' "$root/scripts/lua/header.lp"; then bash pishield-v133.sh; fi
-  if ! grep -Eq 'pishield-v100\.js\?v=(134|135|200|201)\b' "$root/scripts/lua/header.lp"; then bash pishield-v134.sh; fi
-  if ! grep -Eq 'pishield-v100\.js\?v=(135|200|201)\b' "$root/scripts/lua/header.lp"; then bash pishield-v135.sh; fi
-  if ! grep -Eq 'pishield-v100\.js\?v=(200|201)\b' "$root/scripts/lua/header.lp"; then bash pishield-v200.sh; fi
-  bash pishield-v201.sh
+  if ! grep -Eq 'pishield-v100\.js\?v=(133|134|135|200|201|210)\b' "$root/scripts/lua/header.lp"; then bash pishield-v133.sh; fi
+  if ! grep -Eq 'pishield-v100\.js\?v=(134|135|200|201|210)\b' "$root/scripts/lua/header.lp"; then bash pishield-v134.sh; fi
+  if ! grep -Eq 'pishield-v100\.js\?v=(135|200|201|210)\b' "$root/scripts/lua/header.lp"; then bash pishield-v135.sh; fi
+  if ! grep -Eq 'pishield-v100\.js\?v=(200|201|210)\b' "$root/scripts/lua/header.lp"; then bash pishield-v200.sh; fi
+  if ! grep -Eq 'pishield-v100\.js\?v=(201|210)\b' "$root/scripts/lua/header.lp"; then bash pishield-v201.sh; fi
+  bash pishield-v210.sh
   exec bash pishield-v100.sh --check
 fi
 if [[ -f "$root/scripts/js/pishield-pages-v093.js" && ! -d "$state" ]]; then
@@ -33,7 +34,8 @@ if [[ -f "$root/scripts/js/pishield-pages-v093.js" && ! -d "$state" ]]; then
   bash pishield-v134.sh
   bash pishield-v135.sh
   bash pishield-v200.sh
-  exec bash pishield-v201.sh
+  bash pishield-v201.sh
+  exec bash pishield-v210.sh
 fi
 if [[ -f "$root/pishield.lp" && ! -d "$state" ]]; then
   echo 'Existing older PiShield installation detected. Do not overwrite it with the fresh-install sequence.'
@@ -41,7 +43,7 @@ if [[ -f "$root/pishield.lp" && ! -d "$state" ]]; then
   exit 1
 fi
 for f in components/*.sh pishield-v100.sh; do bash -n "$f"; done
-printf '%s\n' 'PiShield 2.0.1 modifies the installed Pi-hole web interface and adds background services.' 'Review the source and create a system backup before proceeding.'
+printf '%s\n' 'PiShield 2.1 modifies the installed Pi-hole web interface and adds background services.' 'Review the source and create a system backup before proceeding.'
 read -r -p 'Continue? [y/N] ' answer
 [[ "$answer" == [yY] ]] || exit 0
 apt-get update
@@ -103,7 +105,8 @@ stage v134 bash pishield-v134.sh
 stage v135 bash pishield-v135.sh
 stage v200 bash pishield-v200.sh
 stage v201 bash pishield-v201.sh
-printf '\nPiShield 2.0.1 installed. Open http://<YOUR-PI-IP>/admin/\n'
+stage v210 bash pishield-v210.sh
+printf '\nPiShield 2.1 installed. Open http://<YOUR-PI-IP>/admin/\n'
 echo 'Select Active defense to enable the managed threat feeds. Configure the optional Ollama bridge using docs/LOCAL-AI.md.'
 hostname -I || true
 bash pishield-v100.sh --check

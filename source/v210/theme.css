@@ -1,0 +1,17 @@
+/* Fixed presentation selectors; no generated CSS, no changes to status colors or visibility. */
+body.logged-in[data-ps-theme-palette=blue]{--ps-accent:#9bcfff;--ps-bg:#101b2a;--ps-panel:#17263a;--ps-line:#3c5676;--ps-fg:#e5efff}
+body.logged-in[data-ps-theme-palette=yellow]{--ps-accent:#ffe18b;--ps-bg:#211c10;--ps-panel:#2d2617;--ps-line:#73633b;--ps-fg:#fff4d5}
+body.logged-in[data-ps-theme-palette=purple]{--ps-accent:#d7b7ff;--ps-bg:#1c142a;--ps-panel:#291d3b;--ps-line:#654e80;--ps-fg:#f2e8ff}
+body.logged-in[data-ps-theme-palette=red]{--ps-accent:#ffb3b3;--ps-bg:#261517;--ps-panel:#352022;--ps-line:#78494d;--ps-fg:#ffe8e8}
+body.logged-in[data-ps-theme-palette=cyan]{--ps-accent:#a0edf5;--ps-bg:#0d2025;--ps-panel:#153037;--ps-line:#3f6a73;--ps-fg:#e3faff}
+body.logged-in[data-ps-theme-palette=gray]{--ps-accent:#d0dcf0;--ps-bg:#171a20;--ps-panel:#242932;--ps-line:#535f70;--ps-fg:#edf0f6}
+body.logged-in[data-ps-theme-palette]:not([data-ps-theme-palette=green]) .content-wrapper,body.logged-in[data-ps-theme-palette]:not([data-ps-theme-palette=green]) .main-sidebar,body.logged-in[data-ps-theme-palette]:not([data-ps-theme-palette=green]) .main-header .navbar,body.logged-in[data-ps-theme-palette]:not([data-ps-theme-palette=green]) .main-header .logo{background:var(--ps-bg)!important;color:var(--ps-fg)!important}
+body.logged-in[data-ps-theme-palette]:not([data-ps-theme-palette=green]) :is(.ps1-panel,.ps1-metric,.ps1-actions a,.psdf-card,.psdp-panel,.pschat-panel,.psi2-panel,.psi2-metrics>div,.box,.ps1-native-detail,.pslive-metrics span,.ps1-bottom){background:var(--ps-panel)!important;border-color:var(--ps-line)!important;color:var(--ps-fg)!important}
+body.logged-in[data-ps-theme-palette]:not([data-ps-theme-palette=green]) :is(.ps1-dashboard h1,.ps1-dashboard h2,.psdf h2,.psdf h3,.pschat h2,.psi2 h2,.psi2 h3,.psc-message strong,.ps-native-banner h2,.ps-native-kicker,.box-title,.ps1-native-detail>summary,.ps-brand-wordmark){color:var(--ps-accent)!important}
+body.logged-in[data-ps-theme-palette]:not([data-ps-theme-palette=green]) .sidebar-menu>li.active>a{border-left-color:var(--ps-accent)!important;background:var(--ps-panel)!important;color:var(--ps-fg)!important}
+body.logged-in[data-ps-theme-density=compact] :is(.ps1-panel,.psdf-card,.psdp-panel,.pschat-panel,.psi2-panel,.psi2-metrics>div,.box-body){padding:9px!important}
+body.logged-in[data-ps-theme-density=comfortable] :is(.ps1-panel,.psdf-card,.psdp-panel,.pschat-panel,.psi2-panel,.psi2-metrics>div,.box-body){padding:20px!important}
+body.logged-in[data-ps-theme-corners=square] :is(.ps1-panel,.ps1-metric,.psdf-card,.psdp-panel,.pschat-panel,.psi2-panel,.psi2-metrics>div,.box){border-radius:0!important}
+body.logged-in[data-ps-theme-corners=soft] :is(.ps1-panel,.ps1-metric,.psdf-card,.psdp-panel,.pschat-panel,.psi2-panel,.psi2-metrics>div,.box){border-radius:14px!important}
+body.logged-in[data-ps-theme-text=large] :is(.ps1-panel,.psdf-card,.psdp-panel,.pschat-panel,.psi2-panel,.psi2-metrics>div,.box-body){font-size:16px!important;line-height:1.55}
+@media(min-width:1000px){body.logged-in[data-ps-theme-columns=wide] .psdf-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}body.logged-in[data-ps-theme-columns=wide] .ps1-metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important}}

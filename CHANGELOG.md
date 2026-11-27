@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.0
+- Added dedicated AI Chat and Tool Workshop pages, read-only tool recipes, and review-only Python drafts.
+- Added fixed maintenance proposals with explicit SSH approval, expiry and replay protection.
+- Added AI-assisted dashboard theme proposals, previews, persistent approved settings and reset.
+- No arbitrary code execution, autonomous source updates or unrestricted root access.
+
 ## 2.0.1
 - Added Ask PiShield chat, follow-up questions, selectable read-only data tools and user-approved reusable analysis recipes.
 - Made manual and scheduled reports use plain English, with an overview and preserved technical text.
